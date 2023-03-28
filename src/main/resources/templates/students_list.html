@@ -10,32 +10,30 @@
 <div class="container">
     <div class="row mt-5">
         <div class="col-md-12">
-            <a href="/new" class="btn btn-info mb-3">Pridėti naują grupę</a>
+            <a href="/students/new" class="btn btn-info mb-3">Pridėti naują studentą</a>
             <div class="card">
-                <div class="card-header">Grupės</div>
+                <div class="card-header">Studentai</div>
                 <div class="card-body">
 
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>Pavadinimas</th>
-                            <th>Metai</th>
-                            <th>Studentai</th>
+                            <th>Vardas</th>
+                            <th>Pavardė</th>
+                            <th>El. pašto adresas</th>
+                            <th>Grupė</th>
                             <th></th>
                         </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="group: ${groups}">
-                                <td th:text="${group.name}"></td>
-                                <td th:text="${group.year}"></td>
-                                <td>
-                                    <ol >
-                                        <li th:each="student: ${group.students}"><span th:text="${student.name}+' '+${student.surname}"></span> </li>
-                                    </ol>
-                                </td>
+                            <tr th:each="student: ${students}">
+                                <td th:text="${student.name}"></td>
+                                <td th:text="${student.surname}"></td>
+                                <td th:text="${student.email}"></td>
+                                <td th:text="${student.group.name}"></td>
                                 <td style="width: 200px;">
-                                    <a th:href="'/update/'+${group.id}" class="btn btn-success">Redaguoti</a>
-                                    <a th:href="'/delete/'+${group.id}" class="btn btn-danger">Ištrinti</a>
+                                    <a  class="btn btn-success">Redaguoti</a>
+                                    <a  class="btn btn-danger">Ištrinti</a>
                                 </td>
                             </tr>
                         </tbody>

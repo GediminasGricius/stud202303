@@ -1,7 +1,9 @@
 package lt.ku.stud.controllers;
 
 import lt.ku.stud.entities.Group;
+import lt.ku.stud.entities.Student;
 import lt.ku.stud.repositories.GroupRepository;
+import lt.ku.stud.repositories.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,9 +16,20 @@ public class GroupController {
     @Autowired
     public GroupRepository groupRepository;
 
+    @Autowired
+    public StudentRepository studentRepository;
+
     @GetMapping("/")
     public String groups(Model model){
         List<Group> groups= groupRepository.findAll();
+        /*
+        for(Group g:groups){
+            System.out.println("Grupė: "+g.getName());
+            for (Student s:g.getStudents()){
+                System.out.println("Studentas: "+s.getName());
+
+            }
+        }*/
         model.addAttribute("groups", groups);
         return "groups_list";
     }
@@ -64,6 +77,10 @@ public class GroupController {
     public  String delete(
             @PathVariable("id") Integer id
     ){
+        Group g=groupRepository.getReferenceById(id);
+        for (Student s:g.getStudents()){
+            studentRepository.deleteById(s.getId());
+        }
         groupRepository.deleteById(id);
         return "redirect:/";
     }

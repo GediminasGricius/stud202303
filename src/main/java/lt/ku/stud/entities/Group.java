@@ -2,6 +2,8 @@ package lt.ku.stud.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name="students_groups")
 public class Group {
@@ -14,6 +16,10 @@ public class Group {
 
     @Column
     private Integer year;
+
+
+    @OneToMany(mappedBy = "group")
+    private List<Student> students;
 
 
     public Group() {
@@ -48,9 +54,13 @@ public class Group {
         this.year = year;
     }
 
+    public List<Student> getStudents() {
+        return students;
+    }
 
-
-
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
 
     @Override
     public String toString() {
