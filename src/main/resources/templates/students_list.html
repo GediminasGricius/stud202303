@@ -32,9 +32,10 @@
                                 <td th:text="${student.surname}"></td>
                                 <td th:text="${student.email}"></td>
                                 <td th:text="${student.group.name}"></td>
-                                <td style="width: 200px;">
+                                <td style="width: 300px;">
                                     <a  class="btn btn-success">Redaguoti</a>
                                     <a  class="btn btn-danger">Ištrinti</a>
+                                    <a th:if="${student.agreement!=null}" th:href="${'/students/'+student.id+'/agreement'}" class="btn btn-info" >Sutartis</a>
                                 </td>
                             </tr>
                         </tbody>

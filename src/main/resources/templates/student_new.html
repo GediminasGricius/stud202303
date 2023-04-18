@@ -13,7 +13,7 @@
             <div class="card">
                 <div class="card-header">Pridėti naują studentą</div>
                 <div class="card-body">
-                  <form method="post" action="/students/new">
+                  <form method="post" action="/students/new" enctype="multipart/form-data">
                       <div class="mb-3">
                           <label class="form-label">Vardas</label>
                           <input type="text" class="form-control" name="name">
@@ -31,6 +31,11 @@
                           <select class="form-select" name="group_id">
                               <option th:each="group: ${groups}" th:value="${group.id}" th:text="${group.name}" ></option>
                           </select>
+                      </div>
+                      <div class="mb-3">
+                          <label class="form-label">Sutarties failas: </label>
+                          <input type="file" class="form-control" name="agreement">
+
                       </div>
 
                       <button class="btn btn-success">Pridėti</button>

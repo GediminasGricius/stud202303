@@ -18,6 +18,9 @@ public class Student {
     @Column(length = 128)
     private String email;
 
+    @Column(length = 128, nullable = true)
+    private String agreement=null;
+
     @ManyToOne
     @JoinColumn(name="group_id")
     private Group group;
@@ -70,6 +73,14 @@ public class Student {
 
     public void setGroup(Group group) {
         this.group = group;
+    }
+
+    public String getAgreement() {
+        return agreement;
+    }
+
+    public void setAgreement(String agreement) {
+        this.agreement = agreement;
     }
 
     @Override
