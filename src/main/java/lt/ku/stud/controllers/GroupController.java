@@ -4,10 +4,12 @@ import lt.ku.stud.entities.Group;
 import lt.ku.stud.entities.Student;
 import lt.ku.stud.repositories.GroupRepository;
 import lt.ku.stud.repositories.StudentRepository;
+import lt.ku.stud.services.FileStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -18,6 +20,9 @@ public class GroupController {
 
     @Autowired
     public StudentRepository studentRepository;
+
+    @Autowired
+    FileStorageService fileStorage;
 
     @GetMapping("/")
     public String groups(Model model){
@@ -42,10 +47,12 @@ public class GroupController {
     @PostMapping("/new")
     public String storeGroup(
             @RequestParam("name") String name,
-            @RequestParam("year") Integer year
+            @RequestParam("year") Integer year,
+            @RequestParam("agreement") MultipartFile agreement
     ){
         Group g=new Group(name, year);
         groupRepository.save(g);
+        fileStorage.store(agreement,"dada");
         return "redirect:/";
     }
 

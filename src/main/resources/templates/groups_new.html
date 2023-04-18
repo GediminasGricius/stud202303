@@ -13,7 +13,7 @@
             <div class="card">
                 <div class="card-header">Grupės</div>
                 <div class="card-body">
-                  <form method="post" action="/new">
+                  <form method="post" action="/new" enctype="multipart/form-data">
                       <div class="mb-3">
                           <label class="form-label">Pavadinimas</label>
                           <input type="text" class="form-control" name="name">
@@ -21,6 +21,11 @@
                       <div class="mb-3">
                           <label class="form-label">Metai</label>
                           <input type="text" class="form-control" name="year">
+                      </div>
+
+                      <div class="mb-3">
+                          <label class="form-label">Sutartis</label>
+                          <input type="file" class="form-control" name="agreement">
                       </div>
                       <button class="btn btn-success">Pridėti</button>
 

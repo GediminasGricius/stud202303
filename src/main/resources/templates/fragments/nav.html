@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
     <nav th:fragment="nav" class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -12,9 +12,13 @@
                 <a class="nav-link" href="/students">Studentai</a>
             </li>
         </ul>
+        <div class="float-end" sec:authorize="isAuthenticated()" >
+            <a class="btn btn-info" href="/logout"> Atsijungti </a>
+        </div>
 
     </div>
 
     </nav>
+
 
 </html>
